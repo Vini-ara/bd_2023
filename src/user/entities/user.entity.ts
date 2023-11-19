@@ -2,7 +2,7 @@ import { IsNumber, IsString } from 'class-validator';
 
 export class UserEnity {
   @IsNumber()
-  id: number;
+  id_usuario: number;
 
   @IsString()
   nome: string;
@@ -20,5 +20,5 @@ export class UserEnity {
   senha: string;
 
   @IsString()
-  foto: string;
+  url_foto_de_usuario: string;
 }
