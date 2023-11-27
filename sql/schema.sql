@@ -21,7 +21,7 @@ create table usuario (
 );
 
 create table item (
-	id_item BIGSERIAL NOT NULL PRIMARY KEY,
+	id BIGSERIAL NOT NULL PRIMARY KEY,
 	descricao VARCHAR(50),
 	categoria VARCHAR(150) NOT NULL,
 	dataAquisicao DATE NOT NULL,
@@ -31,15 +31,16 @@ create table item (
 );
 
 create table emprestimo (
+  id_emprestimo BIGSERIAL NOT NULL,
 	id_item BIGSERIAL NOT NULL,
-    id_usuario BIGSERIAL NOT NULL,
+  id_usuario BIGSERIAL NOT NULL,
 	data_emprestimo DATE,
-    data_devolucao DATE,
-    status CHAR,
-	PRIMARY KEY(id_item, id_usuario),
+  data_devolucao DATE,
+  status CHAR,
+	PRIMARY KEY(id_item, id_usuario, id_emprestimo),
 	CONSTRAINT fk_item
         FOREIGN KEY (id_item)
-        REFERENCES item (id_item),
+        REFERENCES item (id),
     CONSTRAINT fk_usuario
         FOREIGN KEY (id_usuario)
         REFERENCES usuario (id_usuario)
@@ -47,29 +48,30 @@ create table emprestimo (
 
 create table livro (
 	id_item BIGSERIAL NOT NULL,
+  titulo VARCHAR(100) NOT NULL,
 	isbn VARCHAR(100) NOT NULL,
     PRIMARY KEY (isbn, id_item),
     CONSTRAINT fk_item
         FOREIGN KEY (id_item)
-        REFERENCES item (id_item)   
+        REFERENCES item (id)   
 );
 
-create table MaterialDidatico (
+create table materialDidatico (
 	id_item BIGSERIAL NOT NULL,
 	numSerie INT NOT NULL,
 	PRIMARY KEY(id_item, numSerie),
 	CONSTRAINT fk_item
 		FOREIGN KEY (id_item)
-		REFERENCES item(id_item)
+		REFERENCES item(id)
 );
 
-create table Autor (
+create table autor (
 	id_item BIGSERIAL NOT NULL,
-	isbn VARCHAR(50) NOT NULL,
+	isbn_livro VARCHAR(50) NOT NULL,
 	nome_autor VARCHAR(50) NOT NULL,
-	PRIMARY KEY(isbn, id_item, nome_autor),
+	PRIMARY KEY(isbn_livro, id_item, nome_autor),
 	CONSTRAINT fk_livro
-		FOREIGN KEY (isbn, id_item)
+		FOREIGN KEY (isbn_livro, id_item)
 		REFERENCES livro(isbn, id_item)
 );
 
@@ -91,10 +93,10 @@ VALUES ('Livro de Fisica', 'Livros', '2023-01-15', 'Bom estado', 'Biblioteca', '
        ('Livro de Portugues', 'Livros', '2023-08-12', 'Novo', 'Sala 102', 'url_foto_livro_portugues');
 
 -- Inserindo dados na tabela "livro"
-INSERT INTO livro (id_item, isbn)
-VALUES (1, '978-85-221-1495-1'),
-       (4, '978-85-359-0277-3'),
-       (6, '978-85-7858-032-5');
+INSERT INTO livro (id_item, titulo, isbn)
+VALUES (1, 'Relatividade','978-85-221-1495-1'),
+       (4, 'Calculo 1','978-85-359-0277-3'),
+       (6, 'Gramática' ,'978-85-7858-032-5');
 
 -- Inserindo dados na tabela "MaterialDidatico"
 INSERT INTO MaterialDidatico (id_item, numSerie)
@@ -103,7 +105,7 @@ VALUES (2, 123),
        (4, 789);
 
 -- Inserindo dados na tabela "Autor"
-INSERT INTO Autor (id_item, isbn, nome_autor)
+INSERT INTO Autor (id_item, isbn_livro, nome_autor)
 VALUES (1, '978-85-221-1495-1', 'Albert Einstein'),
        (4, '978-85-359-0277-3', 'Stephen Hawking'),
        (6, '978-85-7858-032-5', 'Isaac Newton');
