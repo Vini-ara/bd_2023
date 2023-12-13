@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { DbService } from 'src/db/db.service';
+import { UserEnity } from './entities/user.entity';
 
 @Injectable()
 export class UserService {
@@ -56,5 +57,14 @@ export class UserService {
       'DELETE FROM usuario WHERE id_usuario = $1',
       [id],
     );
+  }
+
+  async findOneByLogin(login: string): Promise<UserEnity> {
+    const res = await this.dbService.query(
+      'SELECT * FROM usuario WHERE login = $1',
+      [login],
+    );
+
+    return res.rows[0];
   }
 }

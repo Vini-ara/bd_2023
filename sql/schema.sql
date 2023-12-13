@@ -1,8 +1,8 @@
-DROP TABLE IF EXISTS Autor;
+DROP TABLE IF EXISTS autor;
 
 DROP TABLE IF EXISTS livro;
 
-DROP TABLE IF EXISTS MaterialDidatico;
+DROP TABLE IF EXISTS materialDidatico;
 
 DROP TABLE IF EXISTS emprestimo;
 
@@ -98,14 +98,14 @@ VALUES (1, 'Relatividade','978-85-221-1495-1'),
        (4, 'Calculo 1','978-85-359-0277-3'),
        (6, 'Gramática' ,'978-85-7858-032-5');
 
--- Inserindo dados na tabela "MaterialDidatico"
-INSERT INTO MaterialDidatico (id_item, numSerie)
+-- Inserindo dados na tabela "materialDidatico"
+INSERT INTO materialDidatico (id_item, numSerie)
 VALUES (2, 123),
        (3, 456),
-       (4, 789);
+       (5, 789);
 
--- Inserindo dados na tabela "Autor"
-INSERT INTO Autor (id_item, isbn_livro, nome_autor)
+-- Inserindo dados na tabela "autor"
+INSERT INTO autor (id_item, isbn_livro, nome_autor)
 VALUES (1, '978-85-221-1495-1', 'Albert Einstein'),
        (4, '978-85-359-0277-3', 'Stephen Hawking'),
        (6, '978-85-7858-032-5', 'Isaac Newton');
