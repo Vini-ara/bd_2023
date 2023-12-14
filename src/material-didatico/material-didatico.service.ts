@@ -9,12 +9,13 @@ export class MaterialDidaticoService {
 
   async create(createMaterialDidaticoDto: CreateMaterialDidaticoDto) {
     await this.dbService.query(
-      'WITH ins AS (INSERT INTO item (descricao, categoria, dataAquisicao, estadoConservacao, url_foto_de_item) VALUES ($1, $2, $3, $4, $5) RETURNING id) INSERT INTO materialDidatico (id_item, numSerie) VALUES ((SELECT id FROM ins), $6)',
+      'WITH ins AS (INSERT INTO item (descricao, categoria, dataAquisicao, estadoConservacao, localizacao, url_foto_de_item) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id) INSERT INTO materialDidatico (id_item, numSerie) VALUES ((SELECT id FROM ins), $7)',
       [
         createMaterialDidaticoDto.descricao,
         createMaterialDidaticoDto.categoria,
         createMaterialDidaticoDto.dataAquisicao,
         createMaterialDidaticoDto.estadoConservacao,
+        createMaterialDidaticoDto.localizacao,
         createMaterialDidaticoDto.url_foto_de_item,
         createMaterialDidaticoDto.numSerie,
       ],
@@ -25,7 +26,7 @@ export class MaterialDidaticoService {
 
   async findAll() {
     const res = await this.dbService.query(
-      'SELECT id, descricao, categoria, estadoConservacao, localizacao, url_foto_de_item, numSerie FROM item, materialDidatico WHERE materialDidatico.id_item = id',
+      'SELECT id, descricao, categoria, dataAquisicao, estadoConservacao, localizacao, url_foto_de_item, numSerie FROM item, materialDidatico WHERE materialDidatico.id_item = id',
     );
 
     return res.rows;
