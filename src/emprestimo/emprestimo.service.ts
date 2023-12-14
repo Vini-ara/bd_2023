@@ -38,7 +38,7 @@ export class EmprestimoService {
 
   async update(id: number, updateEmprestimoDto: UpdateEmprestimoDto) {
     await this.dbService.query(
-      'UPDATE emprestimo SET status = $1 data_devolucao = $2 WHERE id_emprestimo = $3',
+      'UPDATE emprestimo SET status = $1, data_devolucao = $2 WHERE id_emprestimo = $3',
       [updateEmprestimoDto.status, updateEmprestimoDto.data_devolucao, id],
     );
 

@@ -34,7 +34,7 @@ export class MaterialDidaticoService {
 
   async findOne(id: number) {
     const res = await this.dbService.query(
-      'SELECT id, descricao, categoria, estadoConservacao, localizacao, url_foto_de_item, numSerie FROM item, materialDidatico WHERE materialDidatico.id_item = $1 AND item.id = $1',
+      'SELECT id, descricao, categoria, dataAquisicao, estadoConservacao, localizacao, url_foto_de_item, numSerie FROM item, materialDidatico WHERE materialDidatico.id_item = $1 AND item.id = $1',
       [id],
     );
 
