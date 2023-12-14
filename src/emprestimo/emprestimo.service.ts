@@ -9,7 +9,7 @@ export class EmprestimoService {
 
   async create(createEmprestimoDto: CreateEmprestimoDto) {
     await this.dbService.query(
-      'INSERT INTO emprestimo (id_item, id_usuario, data_emprestimo, data_devolucao, status) VALUES ($1, $2, $3, $4, $5)',
+      'INSERT INTO emprestimo (id_item, id_usuario, data_emprestimo, status) VALUES ($1, $2, $3, $4)',
       [
         createEmprestimoDto.id_item,
         createEmprestimoDto.id_usuario,
