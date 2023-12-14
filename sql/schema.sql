@@ -16,7 +16,7 @@ create table usuario (
 	sobrenome VARCHAR(150) NOT NULL,
 	funcao VARCHAR(30) NOT NULL,
 	login VARCHAR(50) NOT NULL,
-	senha VARCHAR(50) NOT NULL,
+	senha VARCHAR(250) NOT NULL,
 	url_foto_de_usuario VARCHAR(150)
 );
 

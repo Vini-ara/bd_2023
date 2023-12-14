@@ -3,6 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import { UserEnity } from 'src/entities';
 import { UserService } from 'src/user/user.service';
 import { JwtPayload } from './dto/jwt-payload.dto';
+const bcrypt = require('bcrypt');
 
 @Injectable()
 export class AuthService {
@@ -34,7 +35,9 @@ export class AuthService {
 
     if (!user) throw new UnauthorizedException();
 
-    if (user.senha !== senha) throw new UnauthorizedException();
+    const passowrdMatch = bcrypt.compare(senha, user.senha);
+
+    if (!passowrdMatch) throw new UnauthorizedException();
 
     return user;
   }

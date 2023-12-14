@@ -3,23 +3,36 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { DbService } from 'src/db/db.service';
 import { UserEnity } from './entities/user.entity';
+const bcrypt = require('bcrypt');
+
 
 @Injectable()
 export class UserService {
   constructor(private dbService: DbService) {}
 
   async create(createUserDto: CreateUserDto) {
-    return await this.dbService.query(
-      'INSERT INTO usuario (nome, sobrenome, login, senha, funcao, url_foto_de_usuario) VALUES ($1, $2, $3, $4, $5, $6)',
-      [
-        createUserDto.nome,
-        createUserDto.sobrenome,
-        createUserDto.login,
-        createUserDto.senha,
-        createUserDto.funcao,
-        createUserDto.url_foto_de_usuario,
-      ],
-    );
+    try {
+      const hashedPassword = await bcrypt.hash(createUserDto.senha, 10);
+      createUserDto.senha = hashedPassword;
+      console.log(createUserDto.senha);
+
+      const query = {
+        text: 'INSERT INTO usuario (nome, sobrenome, login, senha, funcao, url_foto_de_usuario) VALUES ($1, $2, $3, $4, $5, $6)',
+        values: [
+          createUserDto.nome,
+          createUserDto.sobrenome,
+          createUserDto.login,
+          createUserDto.senha,
+          createUserDto.funcao,
+          createUserDto.url_foto_de_usuario,
+        ],
+      };
+
+      return await this.dbService.query(query);
+    } catch (error) {
+      console.error('Error creating user:', error);
+      throw new Error('Error creating user');
+    }
   }
 
   async findAll() {
