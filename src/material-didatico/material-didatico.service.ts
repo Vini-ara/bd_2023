@@ -38,7 +38,7 @@ export class MaterialDidaticoService {
       [id],
     );
 
-    return res.rows;
+    return res.rows[0];
   }
 
   async update(
