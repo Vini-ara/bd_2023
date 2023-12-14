@@ -8,9 +8,9 @@ export class MaterialDidaticoService {
   constructor(private dbService: DbService) {}
 
   async validateCrete(req: any) {
-    const user = req.user;
+    const user = req?.user;
 
-    if (user.funcao === 'Estudante') {
+    if (user?.funcao === 'Estudante') {
       throw new BadRequestException(
         'Estudante não pode cadastrar material didático',
       );
@@ -20,7 +20,7 @@ export class MaterialDidaticoService {
   async validateUpdate(req: any) {
     const user = req.user;
 
-    if (user.funcao === 'Estudante') {
+    if (user?.funcao === 'Estudante') {
       throw new BadRequestException(
         'Estudante não pode atualizar material didático',
       );
@@ -30,7 +30,7 @@ export class MaterialDidaticoService {
   async validateDelete(req: any) {
     const user = req.user;
 
-    if (user.funcao === 'Estudante') {
+    if (user?.funcao === 'Estudante') {
       throw new BadRequestException(
         'Estudante não pode deletar material didático',
       );

@@ -29,7 +29,7 @@ export class LivroService {
   async validateCrete(req: any) {
     const user = req.user;
 
-    if (user.funcao === 'Estudante') {
+    if (user?.funcao === 'Estudante') {
       throw new BadRequestException('Estudante não pode cadastrar livros');
     }
   }
@@ -37,7 +37,7 @@ export class LivroService {
   async validateUpdate(req: any) {
     const user = req.user;
 
-    if (user.funcao === 'Estudante') {
+    if (user?.funcao === 'Estudante') {
       throw new BadRequestException('Estudante não pode atualizar livros');
     }
   }
@@ -45,7 +45,7 @@ export class LivroService {
   async validateDelete(req: any) {
     const user = req.user;
 
-    if (user.funcao === 'Estudante') {
+    if (user?.funcao === 'Estudante') {
       throw new BadRequestException('Estudante não pode deletar livros');
     }
   }

@@ -10,7 +10,7 @@ export class EmprestimoService {
   async validateCrete(req: any, createEmprestimoDto: CreateEmprestimoDto) {
     const user = req.user;
 
-    if (user.funcao !== 'Estudante') {
+    if (user?.funcao !== 'Estudante') {
       throw new BadRequestException(
         'Somente estudantes podem realizar empréstimos',
       );
@@ -29,7 +29,7 @@ export class EmprestimoService {
   async validateUpdate(id: number, req: any) {
     const user = req.user;
 
-    if (user.funcao !== 'Estudante') return;
+    if (user?.funcao !== 'Estudante') return;
 
     const res = await this.dbService.query(
       'SELECT * FROM emprestimo WHERE id_emprestimo = $1',
@@ -46,7 +46,7 @@ export class EmprestimoService {
   async validateDelete(req: any) {
     const user = req.user;
 
-    if (user.funcao !== 'Estudante') return;
+    if (user?.funcao !== 'Estudante') return;
 
     throw new BadRequestException('Você não pode deletar um empréstimo');
   }
