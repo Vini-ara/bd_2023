@@ -79,9 +79,9 @@ create table autor (
 
 -- Inserindo dados na tabela "usuario"
 INSERT INTO usuario (nome, sobrenome, funcao, login, senha, url_foto_de_usuario)
-VALUES ('Joao', 'Silva', 'Membro', 'joao.silva', 'senha123', 'url_foto_joao'),
-       ('Maria', 'Santos', 'Adiministrador', 'maria.santos', 'senha456', 'url_foto_maria'),
-       ('Pedro', 'Almeida', 'Estudante', 'pedro.almeida', 'senha789', 'url_foto_pedro');
+VALUES ('Joao', 'Silva', 'Membro', 'joao.silva', '$2a$10$.kP5WV4ApqHBBme73AHPQ.SmT5E3g7vgrneERmfphQcKgXjvG1/XW$2a$10$.kP5WV4ApqHBBme73AHPQ.SmT5E3g7vgrneERmfphQcKgXjvG1/XW', 'url_foto_joao'),
+       ('Maria', 'Santos', 'Adiministrador', 'maria.santos', '$2a$10$Mx5.4fXDPUvKoS2hZCbnFeqoqQBa87BU1y6MLUnpYXmKUOZtLPG6C', 'url_foto_maria'),
+       ('Pedro', 'Almeida', 'Estudante', 'pedro.almeida', '$2a$10$RhMWqJcvlLLmr47Mr86GIOyKFqZSlKWU3m71YuuiQxv3YoS8KUulu', 'url_foto_pedro');
 
 -- Inserindo dados na tabela "item"
 INSERT INTO item (descricao, categoria, dataAquisicao, estadoConservacao, localizacao, url_foto_de_item)
