@@ -79,9 +79,9 @@ create table autor (
 
 -- Inserindo dados na tabela "usuario"
 INSERT INTO usuario (nome, sobrenome, funcao, login, senha, url_foto_de_usuario)
-VALUES ('Joao', 'Silva', 'Gerente', 'joao.silva', 'senha123', 'url_foto_joao'),
-       ('Maria', 'Santos', 'Analista', 'maria.santos', 'senha456', 'url_foto_maria'),
-       ('Pedro', 'Almeida', 'Assistente', 'pedro.almeida', 'senha789', 'url_foto_pedro');
+VALUES ('Joao', 'Silva', 'Membro', 'joao.silva', 'senha123', 'url_foto_joao'),
+       ('Maria', 'Santos', 'Adiministrador', 'maria.santos', 'senha456', 'url_foto_maria'),
+       ('Pedro', 'Almeida', 'Estudante', 'pedro.almeida', 'senha789', 'url_foto_pedro');
 
 -- Inserindo dados na tabela "item"
 INSERT INTO item (descricao, categoria, dataAquisicao, estadoConservacao, localizacao, url_foto_de_item)

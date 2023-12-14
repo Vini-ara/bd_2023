@@ -7,6 +7,36 @@ import { DbService } from 'src/db/db.service';
 export class MaterialDidaticoService {
   constructor(private dbService: DbService) {}
 
+  async validateCrete(req: any) {
+    const user = req.user;
+
+    if (user.funcao === 'Estudante') {
+      throw new BadRequestException(
+        'Estudante não pode cadastrar material didático',
+      );
+    }
+  }
+
+  async validateUpdate(req: any) {
+    const user = req.user;
+
+    if (user.funcao === 'Estudante') {
+      throw new BadRequestException(
+        'Estudante não pode atualizar material didático',
+      );
+    }
+  }
+
+  async validateDelete(req: any) {
+    const user = req.user;
+
+    if (user.funcao === 'Estudante') {
+      throw new BadRequestException(
+        'Estudante não pode deletar material didático',
+      );
+    }
+  }
+
   async create(createMaterialDidaticoDto: CreateMaterialDidaticoDto) {
     await this.dbService.query(
       'WITH ins AS (INSERT INTO item (descricao, categoria, dataAquisicao, estadoConservacao, localizacao, url_foto_de_item) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id) INSERT INTO materialDidatico (id_item, numSerie) VALUES ((SELECT id FROM ins), $7)',
