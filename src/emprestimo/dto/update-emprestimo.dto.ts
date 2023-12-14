@@ -3,4 +3,5 @@ import { EmprestimoEntity } from 'src/entities/emprestimo.entity';
 
 export class UpdateEmprestimoDto extends PickType(EmprestimoEntity, [
   'status',
+  'data_devolucao',
 ]) {}

@@ -14,7 +14,6 @@ export class EmprestimoService {
         createEmprestimoDto.id_item,
         createEmprestimoDto.id_usuario,
         createEmprestimoDto.data_emprestimo,
-        createEmprestimoDto.data_devolucao,
         'E',
       ],
     );
@@ -39,8 +38,8 @@ export class EmprestimoService {
 
   async update(id: number, updateEmprestimoDto: UpdateEmprestimoDto) {
     await this.dbService.query(
-      'UPDATE emprestimo SET status = $1 WHERE id_emprestimo = $2',
-      [updateEmprestimoDto.status, id],
+      'UPDATE emprestimo SET status = $1 data_devolucao = $2 WHERE id_emprestimo = $3',
+      [updateEmprestimoDto.status, updateEmprestimoDto.data_devolucao, id],
     );
 
     return 'Empréstimo atualizado com sucesso!';
