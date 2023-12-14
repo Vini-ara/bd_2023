@@ -26,6 +26,30 @@ export class LivroService {
     return 'Livro criado com sucesso!';
   }
 
+  async validateCrete(req: any) {
+    const user = req.user;
+
+    if (user?.funcao === 'Estudante') {
+      throw new BadRequestException('Estudante não pode cadastrar livros');
+    }
+  }
+
+  async validateUpdate(req: any) {
+    const user = req.user;
+
+    if (user?.funcao === 'Estudante') {
+      throw new BadRequestException('Estudante não pode atualizar livros');
+    }
+  }
+
+  async validateDelete(req: any) {
+    const user = req.user;
+
+    if (user?.funcao === 'Estudante') {
+      throw new BadRequestException('Estudante não pode deletar livros');
+    }
+  }
+
   async findAll() {
     const res = await this.dbService.query(
       'SELECT id, descricao, categoria, dataAquisicao, estadoConservacao, localizacao, url_foto_de_item, titulo, isbn, nome_autor FROM item, livro, autor WHERE livro.id_item = id AND autor.id_item = id;',

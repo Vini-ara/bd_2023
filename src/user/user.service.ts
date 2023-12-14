@@ -73,6 +73,7 @@ export class UserService {
   }
 
   async findOneByLogin(login: string): Promise<UserEnity> {
+    console.log(login);
     const res = await this.dbService.query(
       'SELECT * FROM usuario WHERE login = $1',
       [login],
